@@ -83,21 +83,15 @@ function OwnerDashboard() {
                 </div>
 
                 <div className="average-rating">
-                  <span className="rating-number">
-                    {store.averageRating}
-                  </span>
+                  <span className="rating-number">{store.averageRating}</span>
                   <span className="rating-star">★</span>
-                  <span>Average Rating</span>
+                  <span className="rating-label">Average Rating</span>
                 </div>
               </div>
 
-              <div className="owner-stats">
-                <div className="owner-stat">
-                  <span className="stat-number">
-                    {store.ratedUsers.length}
-                  </span>
-                  <span>Users Rated</span>
-                </div>
+              <div className="owner-stat">
+                <span className="stat-number">{store.ratedUsers.length}</span>
+                <span className="stat-label">Users Rated</span>
               </div>
 
               <div className="rated-users-section">

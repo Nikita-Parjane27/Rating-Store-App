@@ -327,3 +327,902 @@ td select {
     grid-template-columns: 1fr;
   }
 }
+
+/* =========================================================
+   ROXILER RATING STORE - UI POLISH
+   ========================================================= */
+
+/* ---------- Global ---------- */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+  background: #f5f7fa;
+  color: #172033;
+  line-height: 1.5;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+/* ---------- Authentication Pages ---------- */
+
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 20px;
+  background:
+    radial-gradient(circle at top left, rgba(37, 99, 235, 0.08), transparent 35%),
+    radial-gradient(circle at bottom right, rgba(99, 102, 241, 0.07), transparent 35%),
+    #f5f7fa;
+}
+
+.auth-card {
+  width: min(100%, 480px);
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+  padding: 38px 40px;
+  box-shadow:
+    0 12px 35px rgba(15, 23, 42, 0.08),
+    0 2px 8px rgba(15, 23, 42, 0.04);
+}
+
+.auth-card h1 {
+  margin: 0 0 8px;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 750;
+  letter-spacing: -0.5px;
+  color: #111827;
+}
+
+.auth-card h2 {
+  margin: 0 0 28px;
+  text-align: center;
+  font-size: 21px;
+  font-weight: 650;
+  color: #374151;
+}
+
+.auth-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+}
+
+.auth-card label {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.auth-card input,
+.auth-card textarea,
+.auth-card select {
+  width: 100%;
+  border: 1px solid #d1d5db;
+  border-radius: 9px;
+  padding: 12px 13px;
+  background: #ffffff;
+  color: #111827;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.auth-card input:focus,
+.auth-card textarea:focus,
+.auth-card select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.auth-card textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.auth-card button[type="submit"] {
+  width: 100%;
+  margin-top: 5px;
+  border: 0;
+  border-radius: 9px;
+  padding: 13px 18px;
+  background: #2563eb;
+  color: #ffffff;
+  font-weight: 650;
+  transition:
+    background 0.2s ease,
+    transform 0.15s ease,
+    box-shadow 0.2s ease;
+}
+
+.auth-card button[type="submit"]:hover {
+  background: #1d4ed8;
+  box-shadow: 0 5px 15px rgba(37, 99, 235, 0.22);
+  transform: translateY(-1px);
+}
+
+.auth-card p {
+  color: #6b7280;
+}
+
+.auth-card a {
+  color: #2563eb;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.auth-card a:hover {
+  text-decoration: underline;
+}
+
+.password-hint,
+.auth-card small {
+  display: block;
+  margin-top: -8px;
+  color: #6b7280;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+/* ---------- Dashboard ---------- */
+
+.dashboard-page {
+  min-height: 100vh;
+  background: #f5f7fa;
+  color: #172033;
+}
+
+/* Header */
+
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 22px 30px;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+}
+
+.dashboard-header h1 {
+  margin: 0;
+  color: #111827;
+  font-size: 27px;
+  font-weight: 750;
+  letter-spacing: -0.4px;
+}
+
+.dashboard-header p {
+  margin: 4px 0 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+/* Header buttons */
+
+.dashboard-header button,
+.dashboard-header .primary-button,
+.dashboard-header .secondary-button {
+  border: 0;
+  border-radius: 8px;
+  padding: 9px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  transition:
+    background 0.2s ease,
+    transform 0.15s ease;
+}
+
+.dashboard-header button:hover {
+  transform: translateY(-1px);
+}
+
+/* ---------- Buttons ---------- */
+
+.primary-button {
+  border: 0;
+  border-radius: 8px;
+  padding: 10px 15px;
+  background: #2563eb;
+  color: #ffffff;
+  font-weight: 600;
+  transition:
+    background 0.2s ease,
+    transform 0.15s ease,
+    box-shadow 0.2s ease;
+}
+
+.primary-button:hover {
+  background: #1d4ed8;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+  transform: translateY(-1px);
+}
+
+.secondary-button {
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 10px 15px;
+  background: #ffffff;
+  color: #374151;
+  font-weight: 600;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.secondary-button:hover {
+  background: #f9fafb;
+  border-color: #9ca3af;
+}
+
+/* Make existing generic dashboard buttons consistent */
+
+.dashboard-page button {
+  border-radius: 8px;
+  transition:
+    background 0.2s ease,
+    transform 0.15s ease,
+    box-shadow 0.2s ease;
+}
+
+.dashboard-page button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+/* ---------- Dashboard content ---------- */
+
+.dashboard-content {
+  width: min(1400px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 30px 0 50px;
+}
+
+/* ---------- Admin Stats ---------- */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+.stat-card {
+  position: relative;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 22px 24px;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05);
+}
+
+.stat-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  background: #2563eb;
+}
+
+.stat-card h3,
+.stat-card p {
+  margin: 0;
+}
+
+.stat-card h3 {
+  color: #6b7280;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.stat-card p {
+  margin-top: 8px;
+  color: #111827;
+  font-size: 30px;
+  font-weight: 750;
+}
+
+/* ---------- Sections ---------- */
+
+.dashboard-content > section,
+.management-section,
+.table-section,
+.details-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05);
+}
+
+/* ---------- Management ---------- */
+
+.management-section {
+  padding: 22px 24px;
+  margin-bottom: 24px;
+}
+
+.management-section h2 {
+  margin: 0 0 16px;
+  font-size: 18px;
+  color: #111827;
+}
+
+.management-section button {
+  margin-right: 9px;
+  margin-bottom: 8px;
+}
+
+/* ---------- Search / Filters ---------- */
+
+.search-bar,
+.search-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 18px;
+}
+
+.search-bar input,
+.search-container input,
+.dashboard-page input,
+.dashboard-page select,
+.dashboard-page textarea {
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #111827;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.search-bar input:focus,
+.search-container input:focus,
+.dashboard-page input:focus,
+.dashboard-page select:focus,
+.dashboard-page textarea:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.search-bar button,
+.search-container button {
+  border: 0;
+  border-radius: 8px;
+  padding: 9px 14px;
+  background: #2563eb;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.search-bar button:hover,
+.search-container button:hover {
+  background: #1d4ed8;
+}
+
+/* ---------- Tables ---------- */
+
+.dashboard-page table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+.dashboard-page th {
+  padding: 13px 15px;
+  background: #f8fafc;
+  border-bottom: 1px solid #e5e7eb;
+  color: #374151;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.dashboard-page td {
+  padding: 14px 15px;
+  border-bottom: 1px solid #eef0f3;
+  color: #374151;
+  font-size: 13px;
+  vertical-align: middle;
+}
+
+.dashboard-page tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.dashboard-page tbody tr {
+  transition: background 0.15s ease;
+}
+
+.dashboard-page tbody tr:hover {
+  background: #f8fafc;
+}
+
+/* ---------- Role badges ---------- */
+
+.role-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 4px 9px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+/* ---------- Details ---------- */
+
+.details-card {
+  padding: 26px;
+  margin-bottom: 22px;
+}
+
+.details-card h2 {
+  margin: 0 0 22px;
+  color: #111827;
+  font-size: 21px;
+}
+
+.details-card h3 {
+  color: #111827;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.details-grid > div {
+  padding: 15px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: #f8fafc;
+}
+
+.details-grid strong {
+  display: block;
+  margin-bottom: 5px;
+  color: #6b7280;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.details-grid p {
+  margin: 0;
+  color: #111827;
+  font-size: 14px;
+}
+
+/* ---------- Store cards / Owner dashboard ---------- */
+
+.store-card,
+.owner-store-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 24px;
+  margin-bottom: 22px;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05);
+}
+
+.store-card h2,
+.owner-store-card h2 {
+  margin-top: 0;
+  color: #111827;
+}
+
+.owner-detail-store {
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 17px;
+  margin-top: 12px;
+  background: #f8fafc;
+}
+
+.owner-detail-store h3 {
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+/* Rating emphasis */
+
+.rating,
+.average-rating {
+  font-weight: 700;
+  color: #b7791f;
+}
+
+.star-rating {
+  font-size: 18px;
+  letter-spacing: 2px;
+}
+
+/* ---------- Forms inside dashboards ---------- */
+
+.dashboard-page form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.dashboard-page form label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: #374151;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.dashboard-page form input,
+.dashboard-page form select,
+.dashboard-page form textarea {
+  padding: 11px 12px;
+}
+
+.dashboard-page form textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+/* ---------- Messages ---------- */
+
+.error-message {
+  margin: 10px 0;
+  padding: 10px 12px;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  background: #fef2f2;
+  color: #b91c1c;
+  font-size: 13px;
+}
+
+.success-message {
+  margin: 10px 0;
+  padding: 10px 12px;
+  border: 1px solid #bbf7d0;
+  border-radius: 8px;
+  background: #f0fdf4;
+  color: #15803d;
+  font-size: 13px;
+}
+
+/* ---------- Empty states ---------- */
+
+.empty-state {
+  padding: 35px 20px;
+  text-align: center;
+  color: #6b7280;
+  background: #f8fafc;
+  border: 1px dashed #d1d5db;
+  border-radius: 10px;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 900px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-content {
+    width: min(100% - 30px, 1400px);
+  }
+
+  .dashboard-header {
+    padding: 18px 20px;
+  }
+
+  .dashboard-header h1 {
+    font-size: 23px;
+  }
+}
+
+@media (max-width: 700px) {
+  .auth-card {
+    padding: 28px 22px;
+    border-radius: 14px;
+  }
+
+  .auth-card h1 {
+    font-size: 26px;
+  }
+
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .dashboard-header > div:last-child,
+  .dashboard-header button {
+    width: 100%;
+  }
+
+  .dashboard-header button {
+    margin-top: 5px;
+  }
+
+  .details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-content {
+    width: calc(100% - 20px);
+    padding-top: 20px;
+  }
+
+  /* Allow wide tables to scroll rather than break the page */
+  .dashboard-page table {
+    min-width: 650px;
+  }
+
+  .dashboard-page .table-container,
+  .table-container {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 12px;
+  }
+
+  .management-section {
+    padding: 18px;
+  }
+
+  .search-bar,
+  .search-container {
+    align-items: stretch;
+  }
+
+  .search-bar input,
+  .search-container input {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-page {
+    padding: 18px 12px;
+  }
+
+  .auth-card {
+    padding: 24px 18px;
+  }
+
+  .dashboard-header {
+    padding: 16px;
+  }
+
+  .dashboard-header h1 {
+    font-size: 21px;
+  }
+
+  .dashboard-content {
+    width: calc(100% - 16px);
+  }
+
+  .stat-card {
+    padding: 18px;
+  }
+
+  .stat-card p {
+    font-size: 26px;
+  }
+}
+
+/* ---------- Desktop dashboard width fix ---------- */
+
+.dashboard-content {
+  width: calc(100% - 48px) !important;
+  max-width: 1400px !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 700px) {
+  .dashboard-content {
+    width: calc(100% - 20px) !important;
+    max-width: none !important;
+  }
+}
+
+/* ---------- Store Owner Dashboard Polish ---------- */
+
+.dashboard-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dashboard-actions .secondary-button,
+.dashboard-actions .logout-button {
+  min-height: 40px;
+  padding: 9px 15px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.dashboard-actions .logout-button {
+  border: 1px solid #dc2626;
+  background: #ffffff;
+  color: #dc2626;
+}
+
+.dashboard-actions .logout-button:hover {
+  background: #fef2f2;
+  border-color: #b91c1c;
+}
+
+.owner-store-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.owner-store-header h2 {
+  margin: 0 0 8px;
+  font-size: 22px;
+  color: #111827;
+}
+
+.owner-store-header p {
+  margin: 4px 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.average-rating {
+  min-width: 150px;
+  padding: 16px 20px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #f8fafc;
+  text-align: center;
+  color: #6b7280;
+}
+
+.rating-number {
+  font-size: 30px;
+  font-weight: 750;
+  color: #111827;
+}
+
+.rating-star {
+  margin-left: 5px;
+  font-size: 23px;
+  color: #b7791f;
+}
+
+.rating-label {
+  display: block;
+  margin-top: 3px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #6b7280;
+}
+
+.owner-stats {
+  display: flex;
+  gap: 16px;
+  padding: 20px 0;
+}
+
+.owner-stat {
+  min-width: 150px;
+  padding: 15px 18px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: #f8fafc;
+}
+
+.stat-number {
+  display: block;
+  color: #111827;
+  font-size: 24px;
+  font-weight: 750;
+}
+
+.stat-label {
+  display: block;
+  margin-top: 2px;
+  color: #6b7280;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.rated-users-section {
+  padding-top: 5px;
+}
+
+.rated-users-section h3 {
+  margin: 0 0 15px;
+  color: #111827;
+  font-size: 17px;
+}
+
+.user-rating {
+  font-weight: 700;
+  color: #b7791f;
+}
+
+@media (max-width: 700px) {
+  .dashboard-actions {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .dashboard-actions .secondary-button,
+  .dashboard-actions .logout-button {
+    width: 100%;
+  }
+
+  .owner-store-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .average-rating {
+    width: 100%;
+  }
+
+  .owner-stats {
+    width: 100%;
+  }
+
+  .owner-stat {
+    width: 100%;
+  }
+}
