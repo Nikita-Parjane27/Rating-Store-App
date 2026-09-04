@@ -2,23 +2,32 @@ import {
   ConflictException,
   Injectable,
   UnauthorizedException,
+  NotFoundException,
 } from '@nestjs/common';
-import { sql, eq } from 'drizzle-orm';
+import { eq } from 'drizzle-orm';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
-
 import { db } from '../database/db.js';
 import { users } from '../database/schema.js';
 import { SignupDto } from './dto/signup.dto.js';
 import { LoginDto } from './dto/login.dto.js';
+import { ChangePasswordDto } from './dto/change-password.dto/change-password.dto.js';
 
 @Injectable()
 export class UsersService {
   constructor(private readonly jwtService: JwtService) {}
 
   async getUsers() {
-    return await db.execute(sql`SELECT * FROM users`);
-  }
+  return await db
+    .select({
+      id: users.id,
+      name: users.name,
+      email: users.email,
+      address: users.address,
+      role: users.role,
+    })
+    .from(users);
+}
 
   async signup(signupDto: SignupDto) {
     const existingUser = await db
@@ -94,4 +103,46 @@ export class UsersService {
       },
     };
   }
+
+  async changePassword(
+  userId: number,
+  dto: ChangePasswordDto,
+) {
+  const result = await db
+    .select()
+    .from(users)
+    .where(eq(users.id, userId))
+    .limit(1);
+
+  if (!result.length) {
+    throw new NotFoundException('User not found');
+  }
+
+  const user = result[0];
+
+  const passwordMatches = await bcrypt.compare(
+    dto.currentPassword,
+    user.password,
+  );
+
+  if (!passwordMatches) {
+    throw new UnauthorizedException('Current password is incorrect');
+  }
+
+  const hashedPassword = await bcrypt.hash(
+    dto.newPassword,
+    10,
+  );
+
+  await db
+    .update(users)
+    .set({
+      password: hashedPassword,
+    })
+    .where(eq(users.id, userId));
+
+  return {
+    message: 'Password changed successfully',
+  };
+}
 }
