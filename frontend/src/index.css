@@ -1226,3 +1226,20 @@ button:disabled {
     width: 100%;
   }
 }
+
+.table-sort-button {
+  border: none;
+  background: transparent;
+  padding: 0;
+  font: inherit;
+  font-weight: inherit;
+  color: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.table-sort-button:hover {
+  opacity: 0.75;
+}

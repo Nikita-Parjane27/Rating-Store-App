@@ -93,67 +93,67 @@ function AdminDashboard() {
   };
 
   const handleUserSearch = (e) => {
-  e.preventDefault();
-  loadUsers();
-};
+    e.preventDefault();
+    loadUsers();
+  };
 
-const handleStoreSearch = (e) => {
-  e.preventDefault();
-  loadStores();
-};
+  const handleStoreSearch = (e) => {
+    e.preventDefault();
+    loadStores();
+  };
 
-const handleSortUsers = async (field) => {
-  const newOrder =
-    userSort === field && userOrder === 'asc'
-      ? 'desc'
-      : 'asc';
+  const handleSortUsers = async (field) => {
+    const newOrder =
+      userSort === field && userOrder === 'asc'
+        ? 'desc'
+        : 'asc';
 
-  setUserSort(field);
-  setUserOrder(newOrder);
+    setUserSort(field);
+    setUserOrder(newOrder);
 
-  try {
-    const response = await api.get('/admin/users', {
-      params: {
-        search: userSearch || undefined,
-        role: userRole || undefined,
-        sortBy: field,
-        order: newOrder,
-      },
-    });
+    try {
+      const response = await api.get('/admin/users', {
+        params: {
+          search: userSearch || undefined,
+          role: userRole || undefined,
+          sortBy: field,
+          order: newOrder,
+        },
+      });
 
-    setUsers(response.data);
-  } catch (err) {
-    setError(
-      err.response?.data?.message || 'Failed to sort users'
-    );
-  }
-};
+      setUsers(response.data);
+    } catch (err) {
+      setError(
+        err.response?.data?.message || 'Failed to sort users'
+      );
+    }
+  };
 
-const handleSortStores = async (field) => {
-  const newOrder =
-    storeSort === field && storeOrder === 'asc'
-      ? 'desc'
-      : 'asc';
+  const handleSortStores = async (field) => {
+    const newOrder =
+      storeSort === field && storeOrder === 'asc'
+        ? 'desc'
+        : 'asc';
 
-  setStoreSort(field);
-  setStoreOrder(newOrder);
+    setStoreSort(field);
+    setStoreOrder(newOrder);
 
-  try {
-    const response = await api.get('/admin/stores', {
-      params: {
-        search: storeSearch || undefined,
-        sortBy: field,
-        order: newOrder,
-      },
-    });
+    try {
+      const response = await api.get('/admin/stores', {
+        params: {
+          search: storeSearch || undefined,
+          sortBy: field,
+          order: newOrder,
+        },
+      });
 
-    setStores(response.data);
-  } catch (err) {
-    setError(
-      err.response?.data?.message || 'Failed to sort stores'
-    );
-  }
-};
+      setStores(response.data);
+    } catch (err) {
+      setError(
+        err.response?.data?.message || 'Failed to sort stores'
+      );
+    }
+  };
 
   return (
     <div className="dashboard">
@@ -317,24 +317,24 @@ const handleSortStores = async (field) => {
             <button
               type="button"
               onClick={async () => {
-  setUserSearch('');
-  setUserRole('');
+                setUserSearch('');
+                setUserRole('');
 
-  try {
-    const response = await api.get('/admin/users', {
-      params: {
-        sortBy: userSort,
-        order: userOrder,
-      },
-    });
+                try {
+                  const response = await api.get('/admin/users', {
+                    params: {
+                      sortBy: userSort,
+                      order: userOrder,
+                    },
+                  });
 
-    setUsers(response.data);
-  } catch (err) {
-    setError(
-      err.response?.data?.message || 'Failed to load users'
-    );
-  }
-}}
+                  setUsers(response.data);
+                } catch (err) {
+                  setError(
+                    err.response?.data?.message || 'Failed to load users'
+                  );
+                }
+              }}
             >
               Clear
             </button>
@@ -417,23 +417,23 @@ const handleSortStores = async (field) => {
             <button
               type="button"
               onClick={async () => {
-  setStoreSearch('');
+                setStoreSearch('');
 
-  try {
-    const response = await api.get('/admin/stores', {
-      params: {
-        sortBy: storeSort,
-        order: storeOrder,
-      },
-    });
+                try {
+                  const response = await api.get('/admin/stores', {
+                    params: {
+                      sortBy: storeSort,
+                      order: storeOrder,
+                    },
+                  });
 
-    setStores(response.data);
-  } catch (err) {
-    setError(
-      err.response?.data?.message || 'Failed to load stores'
-    );
-  }
-}}
+                  setStores(response.data);
+                } catch (err) {
+                  setError(
+                    err.response?.data?.message || 'Failed to load stores'
+                  );
+                }
+              }}
             >
               Clear
             </button>
@@ -455,7 +455,9 @@ const handleSortStores = async (field) => {
                     Address ↕
                   </th>
 
-                  <th>Rating</th>
+                  <th onClick={() => handleSortStores('rating')}>
+                    Rating ↕
+                  </th>
                 </tr>
               </thead>
 

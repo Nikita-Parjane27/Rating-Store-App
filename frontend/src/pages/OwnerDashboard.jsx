@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
+
 import { useNavigate } from 'react-router-dom';
+
 import api from '../services/api';
 
 function OwnerDashboard() {
@@ -8,6 +10,10 @@ function OwnerDashboard() {
   const [stores, setStores] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+
+  // Sorting state for rated users table
+  const [sortField, setSortField] = useState('name');
+  const [sortOrder, setSortOrder] = useState('asc');
 
   const loadDashboard = async () => {
     try {
@@ -18,6 +24,7 @@ function OwnerDashboard() {
       setStores(response.data);
     } catch (err) {
       console.error(err);
+
       setError(
         err.response?.data?.message || 'Failed to load dashboard',
       );
@@ -33,11 +40,56 @@ function OwnerDashboard() {
   const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+
     navigate('/');
   };
 
   const changePassword = () => {
     navigate('/change-password');
+  };
+
+  const handleSort = (field) => {
+    if (sortField === field) {
+      setSortOrder((currentOrder) =>
+        currentOrder === 'asc' ? 'desc' : 'asc',
+      );
+    } else {
+      setSortField(field);
+      setSortOrder('asc');
+    }
+  };
+
+  const getSortedUsers = (ratedUsers) => {
+    return [...ratedUsers].sort((a, b) => {
+      let valueA = a[sortField];
+      let valueB = b[sortField];
+
+      if (sortField === 'rating') {
+        valueA = Number(valueA);
+        valueB = Number(valueB);
+      } else {
+        valueA = String(valueA).toLowerCase();
+        valueB = String(valueB).toLowerCase();
+      }
+
+      if (valueA < valueB) {
+        return sortOrder === 'asc' ? -1 : 1;
+      }
+
+      if (valueA > valueB) {
+        return sortOrder === 'asc' ? 1 : -1;
+      }
+
+      return 0;
+    });
+  };
+
+  const getSortIcon = (field) => {
+    if (sortField !== field) {
+      return '↕';
+    }
+
+    return sortOrder === 'asc' ? '↑' : '↓';
   };
 
   return (
@@ -83,15 +135,26 @@ function OwnerDashboard() {
                 </div>
 
                 <div className="average-rating">
-                  <span className="rating-number">{store.averageRating}</span>
+                  <span className="rating-number">
+                    {store.averageRating}
+                  </span>
+
                   <span className="rating-star">★</span>
-                  <span className="rating-label">Average Rating</span>
+
+                  <span className="rating-label">
+                    Average Rating
+                  </span>
                 </div>
               </div>
 
               <div className="owner-stat">
-                <span className="stat-number">{store.ratedUsers.length}</span>
-                <span className="stat-label">Users Rated</span>
+                <span className="stat-number">
+                  {store.ratedUsers.length}
+                </span>
+
+                <span className="stat-label">
+                  Users Rated
+                </span>
               </div>
 
               <div className="rated-users-section">
@@ -106,17 +169,45 @@ function OwnerDashboard() {
                     <table className="data-table">
                       <thead>
                         <tr>
-                          <th>Name</th>
-                          <th>Email</th>
-                          <th>Rating</th>
+                          <th>
+                            <button
+                              type="button"
+                              className="table-sort-button"
+                              onClick={() => handleSort('name')}
+                            >
+                              Name {getSortIcon('name')}
+                            </button>
+                          </th>
+
+                          <th>
+                            <button
+                              type="button"
+                              className="table-sort-button"
+                              onClick={() => handleSort('email')}
+                            >
+                              Email {getSortIcon('email')}
+                            </button>
+                          </th>
+
+                          <th>
+                            <button
+                              type="button"
+                              className="table-sort-button"
+                              onClick={() => handleSort('rating')}
+                            >
+                              Rating {getSortIcon('rating')}
+                            </button>
+                          </th>
                         </tr>
                       </thead>
 
                       <tbody>
-                        {store.ratedUsers.map((user) => (
+                        {getSortedUsers(store.ratedUsers).map((user) => (
                           <tr key={user.userId}>
                             <td>{user.name}</td>
+
                             <td>{user.email}</td>
+
                             <td>
                               <span className="user-rating">
                                 {user.rating} ★
